@@ -27,7 +27,12 @@ class NewUserScreen extends StatelessWidget {
                       fontWeight: FontWeight.w400)),
               cursorColor: AppColors.focus,
             ),
-            DefaultElevatedButton(onTap: () {}, buttonText: "Submit")
+            DefaultElevatedButton(
+                onTap: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/bottom_nav_bar', (route) => false);
+                },
+                buttonText: "Submit")
           ],
         ),
       )),

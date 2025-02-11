@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_shopping_app/configs/constants/app_svg.dart';
 import 'package:grocery_shopping_app/configs/extension/mediaquery_extension.dart';
 import 'package:grocery_shopping_app/configs/theme/app_colors.dart';
+import 'package:svg_flutter/svg.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -33,7 +35,13 @@ class HomeScreen extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'search',
-                  suffixIcon: const Icon(Icons.search),
+                  hintStyle: TextStyle(
+                      color: AppColors.focus, fontSize: height * 0.016),
+                  suffixIcon: Icon(
+                    Icons.search,
+                    color: AppColors.focus,
+                    size: height * 0.025,
+                  ),
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -50,7 +58,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: height * 0.02),
             GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: .72,
@@ -89,8 +97,12 @@ class HomeScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600),
                           ),
                           const Spacer(),
+                          SvgPicture.asset(
+                            AppSvg.star,
+                            height: height * 0.016,
+                          ),
                           Text(
-                            "4.5",
+                            " 4.5",
                             style: TextStyle(
                               fontSize: height * 0.014,
                             ),
@@ -105,7 +117,10 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   );
-                })
+                }),
+            SizedBox(
+              height: height * 0.07,
+            )
           ],
         ),
       ),

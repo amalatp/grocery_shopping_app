@@ -5,24 +5,24 @@ import 'package:grocery_shopping_app/features/home/data/repository/home_reposito
 import 'package:grocery_shopping_app/features/home/models/pduct_model.dart';
 import 'package:meta/meta.dart';
 
-part 'home_event.dart';
-part 'home_state.dart';
+part 'product_event.dart';
+part 'product_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final HomeRepository homeRepository;
-  HomeBloc(this.homeRepository) : super(HomeInitial()) {
+  ProductBloc(this.homeRepository) : super(HomeInitial()) {
     on<FetchProducts>(_onFetchProducts);
   }
 
   Future<void> _onFetchProducts(
-      FetchProducts event, Emitter<HomeState> emit) async {
-    emit(HomeLoading());
+      FetchProducts event, Emitter<ProductState> emit) async {
+    emit(ProductLoading());
     try {
       final products = await homeRepository.getProductList();
-      emit(FetchProductSuccess(products: products));
+      emit(ProductSuccess(products: products));
     } catch (e) {
       log("error from home bloc $e");
-      emit(HomeError(message: "Failed to fetch products: $e"));
+      emit(ProductError(message: "Failed to fetch products: $e"));
     }
   }
 }

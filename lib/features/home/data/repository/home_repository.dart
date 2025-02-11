@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:grocery_shopping_app/features/home/data/data_provider/home_data_provider.dart';
+import 'package:grocery_shopping_app/features/home/models/banner_model.dart';
 import 'package:grocery_shopping_app/features/home/models/pduct_model.dart';
 
 class HomeRepository {
@@ -15,6 +16,20 @@ class HomeRepository {
         return ProductModel.fromJsonList(data);
       } else {
         throw Exception("Failed to fetch product list: ${response.body}");
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<List<BannerModel>> getBanners() async {
+    try {
+      final response = await homeDataProvider.getbanners();
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return BannerModel.fromJsonList(data);
+      } else {
+        throw Exception("Failed to fetch banners: ${response.body}");
       }
     } catch (e) {
       throw e.toString();

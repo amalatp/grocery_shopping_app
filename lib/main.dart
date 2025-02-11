@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_shopping_app/configs/Routes/routes_name.dart';
 import 'package:grocery_shopping_app/features/authentication/data/data_provider/auth_data_provider.dart';
+import 'package:grocery_shopping_app/features/home/bloc/home_bloc.dart';
+import 'package:grocery_shopping_app/features/home/data/data_provider/home_data_provider.dart';
+import 'package:grocery_shopping_app/features/home/data/repository/home_repository.dart';
 
 import 'features/authentication/bloc/auth_bloc.dart';
 import 'features/authentication/data/repositoty/auth_repository.dart';
@@ -19,6 +22,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AuthBloc(AuthRepository(AuthDataProvider())),
+        ),
+        BlocProvider(
+          create: (context) => HomeBloc(HomeRepository(HomeDataProvider())),
         ),
       ],
       child: MaterialApp(
